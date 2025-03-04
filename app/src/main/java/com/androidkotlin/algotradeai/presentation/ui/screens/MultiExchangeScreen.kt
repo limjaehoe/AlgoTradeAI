@@ -1,5 +1,6 @@
 package com.androidkotlin.algotradeai.presentation.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -24,6 +25,7 @@ import java.util.Locale
 enum class KoreanExchange {
     UPBIT, BITHUMB, ALL
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MultiExchangeScreen(
@@ -97,9 +99,13 @@ fun MultiExchangeScreen(
                 // 선택된 거래소에 따라 코인 필터링
                 val filteredCoins = when (selectedExchange) {
                     KoreanExchange.UPBIT -> koreanCoinPrices.filter { it.id.startsWith("KRW-") }
-                    KoreanExchange.BITHUMB -> koreanCoinPrices.filter { it.id.contains("bithumb", ignoreCase = true) }
+                    KoreanExchange.BITHUMB -> koreanCoinPrices.filter { it.id.startsWith("bithumb-") }
                     KoreanExchange.ALL -> koreanCoinPrices
                 }
+
+                // 로그로 필터링 결과 확인
+                Log.d("MultiExchangeScreen", "Selected exchange: $selectedExchange")
+                Log.d("MultiExchangeScreen", "Total coins: ${koreanCoinPrices.size}, Filtered coins: ${filteredCoins.size}")
 
                 LazyColumn(
                     modifier = Modifier
