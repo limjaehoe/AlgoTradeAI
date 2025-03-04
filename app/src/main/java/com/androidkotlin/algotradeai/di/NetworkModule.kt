@@ -31,6 +31,7 @@ annotation class BithumbRetrofit
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {

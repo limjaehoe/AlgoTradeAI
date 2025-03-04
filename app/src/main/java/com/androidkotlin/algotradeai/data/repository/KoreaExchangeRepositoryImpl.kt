@@ -83,25 +83,27 @@ class KoreaExchangeRepositoryImpl @Inject constructor(
                                 Log.d("MultiExchangeRepo", "Bithumb response for $symbol: $response")
 
                                 // API 응답이 정상적으로 왔는지 확인
-                                val price = response.closingPrice.toDoubleOrNull()
-                                if (price != null && price > 0) {
-                                    // 하드코딩 데이터 제거 및 실제 데이터로 교체
-                                    bithumbCoins.removeIf { it.id == "bithumb-$symbol" }
-                                    bithumbCoins.add(
-                                        Coin(
-                                            id = "bithumb-$symbol",
-                                            symbol = symbol,
-                                            name = "$symbol (빗썸)",
-                                            currentPrice = price,
-                                            // 변동률 데이터가 있으면 사용, 없으면 하드코딩된 값 유지
-                                            priceChangePercentage = when(symbol) {
-                                                "BTC" -> 2.61
-                                                "ETH" -> 3.98
-                                                else -> 0.0
-                                            }
+                                if (response.status == "0000") {  // 성공 상태 코드
+                                    val tickerData = response.data
+                                    val price = tickerData.closing_price.toDoubleOrNull()
+                                    val changeRate = tickerData.fluctate_rate_24H.toDoubleOrNull()
+
+                                    if (price != null && price > 0) {
+                                        // 하드코딩 데이터 제거 및 실제 데이터로 교체
+                                        bithumbCoins.removeIf { it.id == "bithumb-$symbol" }
+                                        bithumbCoins.add(
+                                            Coin(
+                                                id = "bithumb-$symbol",
+                                                symbol = symbol,
+                                                name = "$symbol (빗썸)",
+                                                currentPrice = price,
+                                                priceChangePercentage = changeRate ?: 0.0
+                                            )
                                         )
-                                    )
-                                    Log.d("MultiExchangeRepo", "Added Bithumb $symbol price: $price")
+                                        Log.d("MultiExchangeRepo", "Added Bithumb $symbol price: $price")
+                                    }
+                                } else {
+                                    Log.e("MultiExchangeRepo", "Bithumb API error: ${response.status}")
                                 }
                             } catch (e: HttpException) {
                                 Log.e("MultiExchangeRepo", "HTTP error fetching Bithumb price for $symbol: ${e.code()}", e)

@@ -20,12 +20,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object UseCaseModule {
 
-    /**
-     * GetCoinMarketsUseCase 인스턴스를 제공합니다.
-     *
-     * @param coinRepository UseCase에서 사용할 CoinRepository
-     * @return GetCoinMarketsUseCase 인스턴스
-     */
     @Provides
     @Singleton
     fun provideGetCoinMarketsUseCase(
@@ -34,12 +28,6 @@ object UseCaseModule {
         return GetGlobalCoinMarketsUseCase(coinRepository)
     }
 
-    /**
-     * GetKoreanCoinPricesUseCase 인스턴스를 제공합니다.
-     *
-     * @param koreaExchangeRepository UseCase에서 사용할 MultiExchangeRepository
-     * @return GetKoreanCoinPricesUseCase 인스턴스
-     */
     @Provides
     @Singleton
     fun provideGetKoreanCoinPricesUseCase(
