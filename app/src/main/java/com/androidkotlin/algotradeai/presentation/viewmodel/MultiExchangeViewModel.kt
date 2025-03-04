@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.androidkotlin.algotradeai.domain.model.Coin
 import com.androidkotlin.algotradeai.domain.repository.MultiExchangeRepository
+import com.androidkotlin.algotradeai.domain.usecase.GetKoreanCoinPricesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,9 +13,16 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * 한국 거래소의 코인 가격 정보를 관리하는 ViewModel
+ *
+ * 이 ViewModel은 UseCase를 통해 한국 거래소의 코인 가격 데이터를 가져오고
+ * UI 상태를 관리합니다.
+ */
 @HiltViewModel
 class MultiExchangeViewModel @Inject constructor(
-    private val multiExchangeRepository: MultiExchangeRepository
+    // Repository 대신 UseCase를 주입받습니다.
+    private val getKoreanCoinPricesUseCase: GetKoreanCoinPricesUseCase
 ) : ViewModel() {
     private val _koreanCoinPrices = MutableStateFlow<List<Coin>>(emptyList())
     val koreanCoinPrices: StateFlow<List<Coin>> = _koreanCoinPrices.asStateFlow()
@@ -26,11 +34,17 @@ class MultiExchangeViewModel @Inject constructor(
         fetchKoreanCoinPrices()
     }
 
+    /**
+     * 한국 거래소의 코인 가격 정보를 가져옵니다.
+     *
+     * UseCase를 호출하여 데이터를 가져오고 UI 상태를 업데이트합니다.
+     */
     fun fetchKoreanCoinPrices() {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                val prices = multiExchangeRepository.getKoreanCoinPrices()
+                // Repository 대신 UseCase를 호출합니다.
+                val prices = getKoreanCoinPricesUseCase()
                 Log.d("MultiExchangeViewModel", "Fetched ${prices.size} coins")
                 _koreanCoinPrices.value = prices
             } catch (e: Exception) {
