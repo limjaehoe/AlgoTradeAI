@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.androidkotlin.algotradeai.domain.model.Coin
-import com.androidkotlin.algotradeai.domain.repository.MultiExchangeRepository
 import com.androidkotlin.algotradeai.domain.usecase.GetKoreanCoinPricesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

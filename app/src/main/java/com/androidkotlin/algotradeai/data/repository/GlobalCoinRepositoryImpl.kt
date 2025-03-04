@@ -3,13 +3,13 @@ package com.androidkotlin.algotradeai.data.repository
 import android.util.Log
 import com.androidkotlin.algotradeai.data.remote.api.CoinGeckoApiService
 import com.androidkotlin.algotradeai.domain.model.Coin
-import com.androidkotlin.algotradeai.domain.repository.CoinRepository
+import com.androidkotlin.algotradeai.domain.repository.GlobalCoinRepository
 import javax.inject.Inject
 
-class CoinRepositoryImpl @Inject constructor(
+class GlobalCoinRepositoryImpl @Inject constructor(
     private val coinGeckoApiService: CoinGeckoApiService
-) : CoinRepository {
-    override suspend fun getCoinMarkets(): List<Coin> {
+) : GlobalCoinRepository {
+    override suspend fun getGlobalCoinMarkets(): List<Coin> {
         return try {
             val response = coinGeckoApiService.getCoinMarkets()
 

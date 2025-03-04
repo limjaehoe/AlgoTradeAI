@@ -4,7 +4,7 @@ import com.androidkotlin.algotradeai.domain.model.Coin
 import com.androidkotlin.algotradeai.domain.model.CoinAnalysis
 import com.androidkotlin.algotradeai.domain.model.Signal
 import com.androidkotlin.algotradeai.domain.model.Trend
-import com.androidkotlin.algotradeai.domain.repository.CoinRepository
+import com.androidkotlin.algotradeai.domain.repository.GlobalCoinRepository
 import javax.inject.Inject
 
 /**
@@ -14,7 +14,7 @@ import javax.inject.Inject
  * 거래 신호(매수/매도/유지)를 생성합니다.
  */
 class AnalyzeCoinTrendsUseCase @Inject constructor(
-    private val coinRepository: CoinRepository
+    private val coinRepository: GlobalCoinRepository
 ) {
     /**
      * 코인 추세를 분석합니다.
@@ -23,7 +23,7 @@ class AnalyzeCoinTrendsUseCase @Inject constructor(
      * @return 분석 결과 리스트
      */
     suspend operator fun invoke(timeframe: Int = 7): List<CoinAnalysis> {
-        val coins = coinRepository.getCoinMarkets()
+        val coins = coinRepository.getGlobalCoinMarkets()
 
         // 여기서 복잡한 비즈니스 로직 수행
         // 예: 기술적 분석, 추세 분석, 거래 신호 생성 등

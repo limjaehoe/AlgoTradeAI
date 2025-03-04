@@ -1,9 +1,9 @@
 package com.androidkotlin.algotradeai.di
 
-import com.androidkotlin.algotradeai.data.repository.CoinRepositoryImpl
-import com.androidkotlin.algotradeai.data.repository.MultiExchangeRepositoryImpl
-import com.androidkotlin.algotradeai.domain.repository.CoinRepository
-import com.androidkotlin.algotradeai.domain.repository.MultiExchangeRepository
+import com.androidkotlin.algotradeai.data.repository.GlobalCoinRepositoryImpl
+import com.androidkotlin.algotradeai.data.repository.KoreaExchangeRepositoryImpl
+import com.androidkotlin.algotradeai.domain.repository.GlobalCoinRepository
+import com.androidkotlin.algotradeai.domain.repository.KoreaExchangeRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,13 +16,13 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun bindCoinRepository(
-        coinRepositoryImpl: CoinRepositoryImpl
-    ): CoinRepository = coinRepositoryImpl
+        globalCoinRepositoryImpl: GlobalCoinRepositoryImpl
+    ): GlobalCoinRepository = globalCoinRepositoryImpl
 
     @Provides
     @Singleton
     fun bindMultiExchangeRepository(
-        multiExchangeRepositoryImpl: MultiExchangeRepositoryImpl
-    ): MultiExchangeRepository = multiExchangeRepositoryImpl
+        koreaExchangeRepositoryImpl: KoreaExchangeRepositoryImpl
+    ): KoreaExchangeRepository = koreaExchangeRepositoryImpl
 
 }

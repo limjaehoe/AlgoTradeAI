@@ -4,8 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.androidkotlin.algotradeai.domain.model.Coin
-import com.androidkotlin.algotradeai.domain.repository.CoinRepository
-import com.androidkotlin.algotradeai.domain.usecase.GetCoinMarketsUseCase
+import com.androidkotlin.algotradeai.domain.usecase.GetGlobalCoinMarketsUseCase
 import com.androidkotlin.algotradeai.util.NetworkUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -24,7 +23,7 @@ import javax.inject.Inject
 class CoinViewModel @Inject constructor(
     //private val coinRepository: CoinRepository,
     // Repository 대신 UseCase를 주입받습니다.
-    private val getCoinMarketsUseCase: GetCoinMarketsUseCase,
+    private val getGlobalCoinMarketsUseCase: GetGlobalCoinMarketsUseCase,
     @ApplicationContext private val context: Context
 ) : ViewModel() {
     private val _coinMarkets = MutableStateFlow<List<Coin>>(emptyList())
@@ -56,7 +55,7 @@ class CoinViewModel @Inject constructor(
             try {
                 // Repository 대신 UseCase를 호출합니다.
                 // 함수처럼 직접 호출할 수 있어 코드가 더 간결해집니다.
-                val markets = getCoinMarketsUseCase()
+                val markets = getGlobalCoinMarketsUseCase()
                 _coinMarkets.value = markets
             } catch (e: Exception) {
                 _errorMessage.value = "Error fetching coin markets: ${e.localizedMessage}"

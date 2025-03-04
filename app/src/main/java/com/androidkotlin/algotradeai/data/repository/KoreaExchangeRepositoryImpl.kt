@@ -1,20 +1,19 @@
 package com.androidkotlin.algotradeai.data.repository
 
 import android.util.Log
-import com.androidkotlin.algotradeai.data.remote.api.UpbitApiService
 import com.androidkotlin.algotradeai.data.remote.api.BithumbApiService
+import com.androidkotlin.algotradeai.data.remote.api.UpbitApiService
 import com.androidkotlin.algotradeai.domain.model.Coin
-
-
-import com.androidkotlin.algotradeai.domain.repository.MultiExchangeRepository
+import com.androidkotlin.algotradeai.domain.repository.KoreaExchangeRepository
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import retrofit2.HttpException
 import javax.inject.Inject
-class MultiExchangeRepositoryImpl @Inject constructor(
+
+class KoreaExchangeRepositoryImpl @Inject constructor(
     private val upbitApiService: UpbitApiService,
     private val bithumbApiService: BithumbApiService
-) : MultiExchangeRepository {
+) : KoreaExchangeRepository {
     override suspend fun getKoreanCoinPrices(): List<Coin> = coroutineScope {
         val coinList = mutableListOf<Coin>()
 

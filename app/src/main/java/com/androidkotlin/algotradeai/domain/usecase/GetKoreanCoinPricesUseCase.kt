@@ -1,7 +1,7 @@
 package com.androidkotlin.algotradeai.domain.usecase
 
 import com.androidkotlin.algotradeai.domain.model.Coin
-import com.androidkotlin.algotradeai.domain.repository.MultiExchangeRepository
+import com.androidkotlin.algotradeai.domain.repository.KoreaExchangeRepository
 import javax.inject.Inject
 
 /**
@@ -11,12 +11,12 @@ import javax.inject.Inject
  * MultiExchangeRepository로부터 가져오는 역할을 담당합니다.
  */
 class GetKoreanCoinPricesUseCase @Inject constructor(
-    private val multiExchangeRepository: MultiExchangeRepository
+    private val koreaExchangeRepository: KoreaExchangeRepository
 ) {
     /**
      * @return 한국 거래소의 코인 가격 정보 리스트
      */
     suspend operator fun invoke(): List<Coin> {
-        return multiExchangeRepository.getKoreanCoinPrices()
+        return koreaExchangeRepository.getKoreanCoinPrices()
     }
 }
