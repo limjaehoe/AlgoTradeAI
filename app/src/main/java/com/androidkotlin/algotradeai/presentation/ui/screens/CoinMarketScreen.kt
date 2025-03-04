@@ -1,6 +1,7 @@
 package com.androidkotlin.algotradeai.presentation.ui.screens
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,10 +18,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.androidkotlin.algotradeai.presentation.ui.components.CoinMarketItem
 import com.androidkotlin.algotradeai.presentation.viewmodel.CoinViewModel
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CoinMarketScreen(
@@ -36,7 +37,19 @@ fun CoinMarketScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Coin Markets") })
+            Column {
+                Text(
+                    text = "글로벌 코인 시세 (CoinGecko)",
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
+                )
+                Text(
+                    text = "USD 기준",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.secondary,
+                    modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
+                )
+            }
         }
     ) { padding ->
         when {
@@ -65,7 +78,9 @@ fun CoinMarketScreen(
             }
             else -> {
                 LazyColumn(
-                    modifier = Modifier.padding(padding)
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding)
                 ) {
                     items(coinMarkets) { coin ->
                         CoinMarketItem(coin)
