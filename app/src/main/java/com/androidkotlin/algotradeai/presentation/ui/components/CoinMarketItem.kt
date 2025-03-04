@@ -1,4 +1,4 @@
-package com.androidkotlin.algotradeai.presentation.ui
+package com.androidkotlin.algotradeai.presentation.ui.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,7 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.androidkotlin.algotradeai.domain.Coin
+import com.androidkotlin.algotradeai.domain.model.Coin
 
 
 @Composable

@@ -2,8 +2,8 @@ package com.androidkotlin.algotradeai.data.repository
 
 import android.util.Log
 import com.androidkotlin.algotradeai.data.remote.api.CoinGeckoApiService
-import com.androidkotlin.algotradeai.domain.Coin
-import com.androidkotlin.algotradeai.domain.CoinRepository
+import com.androidkotlin.algotradeai.domain.model.Coin
+import com.androidkotlin.algotradeai.domain.repository.CoinRepository
 import javax.inject.Inject
 
 class CoinRepositoryImpl @Inject constructor(

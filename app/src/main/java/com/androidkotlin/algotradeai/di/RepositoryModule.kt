@@ -2,8 +2,8 @@ package com.androidkotlin.algotradeai.di
 
 import com.androidkotlin.algotradeai.data.repository.CoinRepositoryImpl
 import com.androidkotlin.algotradeai.data.repository.MultiExchangeRepositoryImpl
-import com.androidkotlin.algotradeai.domain.CoinRepository
-import com.androidkotlin.algotradeai.domain.MultiExchangeRepository
+import com.androidkotlin.algotradeai.domain.repository.CoinRepository
+import com.androidkotlin.algotradeai.domain.repository.MultiExchangeRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

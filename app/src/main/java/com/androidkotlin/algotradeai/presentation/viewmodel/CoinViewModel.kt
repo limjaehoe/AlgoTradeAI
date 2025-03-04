@@ -3,8 +3,8 @@ package com.androidkotlin.algotradeai.presentation.viewmodel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.androidkotlin.algotradeai.domain.Coin
-import com.androidkotlin.algotradeai.domain.CoinRepository
+import com.androidkotlin.algotradeai.domain.model.Coin
+import com.androidkotlin.algotradeai.domain.repository.CoinRepository
 import com.androidkotlin.algotradeai.util.NetworkUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext

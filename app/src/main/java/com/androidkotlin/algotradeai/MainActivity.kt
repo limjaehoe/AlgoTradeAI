@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.androidkotlin.algotradeai.presentation.ui.CoinMarketScreen
-import com.androidkotlin.algotradeai.presentation.ui.MultiExchangeScreen
+import com.androidkotlin.algotradeai.presentation.ui.screens.CoinMarketScreen
+import com.androidkotlin.algotradeai.presentation.ui.screens.MultiExchangeScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

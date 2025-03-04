@@ -3,11 +3,10 @@ package com.androidkotlin.algotradeai.data.repository
 import android.util.Log
 import com.androidkotlin.algotradeai.data.remote.api.UpbitApiService
 import com.androidkotlin.algotradeai.data.remote.api.BithumbApiService
-import com.androidkotlin.algotradeai.data.remote.api.CoinGeckoApiService
-import com.androidkotlin.algotradeai.domain.Coin
+import com.androidkotlin.algotradeai.domain.model.Coin
 
 
-import com.androidkotlin.algotradeai.domain.MultiExchangeRepository
+import com.androidkotlin.algotradeai.domain.repository.MultiExchangeRepository
 import javax.inject.Inject
 
 class MultiExchangeRepositoryImpl @Inject constructor(

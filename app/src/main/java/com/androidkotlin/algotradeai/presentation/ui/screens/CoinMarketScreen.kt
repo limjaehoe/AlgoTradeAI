@@ -1,4 +1,4 @@
-package com.androidkotlin.algotradeai.presentation.ui
+package com.androidkotlin.algotradeai.presentation.ui.screens
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,6 +18,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.androidkotlin.algotradeai.presentation.ui.components.CoinMarketItem
 import com.androidkotlin.algotradeai.presentation.viewmodel.CoinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
