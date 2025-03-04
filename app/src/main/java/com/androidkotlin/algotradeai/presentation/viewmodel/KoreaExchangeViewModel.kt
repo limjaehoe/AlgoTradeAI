@@ -19,7 +19,7 @@ import javax.inject.Inject
  * UI 상태를 관리합니다.
  */
 @HiltViewModel
-class MultiExchangeViewModel @Inject constructor(
+class KoreaExchangeViewModel @Inject constructor(
     // Repository 대신 UseCase를 주입받습니다.
     private val getKoreanCoinPricesUseCase: GetKoreanCoinPricesUseCase
 ) : ViewModel() {

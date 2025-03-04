@@ -18,7 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.androidkotlin.algotradeai.domain.model.Coin
-import com.androidkotlin.algotradeai.presentation.viewmodel.MultiExchangeViewModel
+import com.androidkotlin.algotradeai.presentation.viewmodel.KoreaExchangeViewModel
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -28,8 +28,8 @@ enum class KoreanExchange {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MultiExchangeScreen(
-    viewModel: MultiExchangeViewModel = hiltViewModel()
+fun KoreaExchangeScreen(
+    viewModel: KoreaExchangeViewModel = hiltViewModel()
 ) {
     val koreanCoinPrices by viewModel.koreanCoinPrices.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()

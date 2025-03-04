@@ -20,7 +20,7 @@ import javax.inject.Inject
  * Repository를 직접 참조하지 않고 UseCase를 통해 비즈니스 로직에 접근합니다.
  */
 @HiltViewModel
-class CoinViewModel @Inject constructor(
+class GlobalCoinViewModel @Inject constructor(
     //private val coinRepository: CoinRepository,
     // Repository 대신 UseCase를 주입받습니다.
     private val getGlobalCoinMarketsUseCase: GetGlobalCoinMarketsUseCase,

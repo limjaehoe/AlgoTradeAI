@@ -18,8 +18,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.androidkotlin.algotradeai.presentation.ui.screens.CoinMarketScreen
-import com.androidkotlin.algotradeai.presentation.ui.screens.MultiExchangeScreen
+import com.androidkotlin.algotradeai.presentation.ui.screens.GlobalCoinScreen
+import com.androidkotlin.algotradeai.presentation.ui.screens.KoreaExchangeScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -65,8 +65,8 @@ fun ExchangeApp() {
         ) {
             // 선택된 탭에 따라 다른 화면 표시
             when (selectedTabIndex) {
-                0 -> MultiExchangeScreen() // 한국 거래소
-                1 -> CoinMarketScreen()    // 글로벌 거래소 (코인게코)
+                0 -> KoreaExchangeScreen() // 한국 거래소
+                1 -> GlobalCoinScreen()    // 글로벌 거래소 (코인게코)
             }
         }
     }
