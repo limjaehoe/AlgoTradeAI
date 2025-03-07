@@ -1,6 +1,7 @@
 package com.androidkotlin.algotradeai.presentation.ui.screens
 
 import android.util.Log
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -29,13 +30,16 @@ enum class KoreanExchange {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun KoreaExchangeScreen(
-    viewModel: KoreaExchangeViewModel = hiltViewModel()
+    viewModel: KoreaExchangeViewModel = hiltViewModel(),
+    onCoinClick: (String) -> Unit = {}  // 코인 클릭 콜백 추가
 ) {
     val koreanCoinPrices by viewModel.koreanCoinPrices.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
 
     // 선택된 거래소 상태 관리
     var selectedExchange by remember { mutableStateOf(KoreanExchange.ALL) }
+
+
 
     Scaffold(
         topBar = {
@@ -110,19 +114,29 @@ fun KoreaExchangeScreen(
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(padding)
+                        .padding(padding),
                 ) {
                     items(filteredCoins) { coin ->
-                        CoinExchangeItem(coin)
+                        CoinExchangeItem(
+                            coin = coin,
+                            onClick = { onCoinClick(coin.id) }  // 클릭 콜백 호출
+                        )
                     }
                 }
+
+
             }
         }
     }
+
+
 }
 
 @Composable
-fun CoinExchangeItem(coin: Coin) {
+fun CoinExchangeItem(
+    coin: Coin,
+    onClick: () -> Unit = {}  // 클릭 콜백 추가
+) {
     val numberFormat = NumberFormat.getNumberInstance(Locale.KOREA)
     numberFormat.maximumFractionDigits = 2
 
@@ -136,7 +150,8 @@ fun CoinExchangeItem(coin: Coin) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp)
+            .clickable { onClick() },  // 클릭 가능하게 수정,
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Column(

@@ -24,7 +24,8 @@ import com.androidkotlin.algotradeai.presentation.viewmodel.GlobalCoinViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GlobalCoinScreen(
-    viewModel: GlobalCoinViewModel = hiltViewModel()
+    viewModel: GlobalCoinViewModel = hiltViewModel(),
+    onCoinClick: (String) -> Unit = {}  // 추가된 파라미터
 ) {
     val coinMarkets by viewModel.coinMarkets.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
@@ -82,7 +83,10 @@ fun GlobalCoinScreen(
                         .padding(padding)
                 ) {
                     items(coinMarkets) { coin ->
-                        CoinMarketItem(coin)
+                        CoinMarketItem(
+                            coin = coin,
+                            onClick = { onCoinClick(coin.id) }  // 클릭 콜백 추가
+                        )
                     }
                 }
             }
