@@ -6,15 +6,10 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface BithumbApiService {
-    @GET("ticker/{order_currency}_{payment_currency}")
-    suspend fun getCoinTicker(
-        @Path("order_currency") orderCurrency: String,
-        @Path("payment_currency") paymentCurrency: String = "KRW"
-    ): BithumbResponse<BithumbTickerData>
 
     // 코인 상세 정보 요청 메서드 추가 - 빗썸에서는 ticker API가 상세 정보도 제공
     @GET("ticker/{order_currency}_{payment_currency}")
-    suspend fun getCoinDetail(
+    suspend fun getCoinTicker(
         @Path("order_currency") orderCurrency: String,
         @Path("payment_currency") paymentCurrency: String = "KRW"
     ): BithumbResponse<BithumbTickerData>

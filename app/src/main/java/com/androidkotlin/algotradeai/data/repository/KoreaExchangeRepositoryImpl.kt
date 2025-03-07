@@ -201,7 +201,7 @@ class KoreaExchangeRepositoryImpl @Inject constructor(
                     }
                 }
                 "bithumb" -> {
-                    val response = bithumbApiService.getCoinDetail(symbol)
+                    val response = bithumbApiService.getCoinTicker(symbol)
 
                     if (response.status == "0000") {
                         val tickerData = response.data
