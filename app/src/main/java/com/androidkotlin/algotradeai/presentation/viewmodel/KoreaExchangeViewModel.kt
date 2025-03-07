@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.androidkotlin.algotradeai.domain.model.Coin
+import com.androidkotlin.algotradeai.domain.usecase.AnalyzeCoinTrendsUseCase
 import com.androidkotlin.algotradeai.domain.usecase.GetKoreanCoinPricesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,8 +21,8 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class KoreaExchangeViewModel @Inject constructor(
-    // Repository 대신 UseCase를 주입받습니다.
-    private val getKoreanCoinPricesUseCase: GetKoreanCoinPricesUseCase
+    // Repository 대신 UseCase를 주입받습니다. 별도의 @provides 추가안해도 됨.
+    private val getKoreanCoinPricesUseCase: GetKoreanCoinPricesUseCase,
 ) : ViewModel() {
     private val _koreanCoinPrices = MutableStateFlow<List<Coin>>(emptyList())
     val koreanCoinPrices: StateFlow<List<Coin>> = _koreanCoinPrices.asStateFlow()
@@ -44,6 +45,8 @@ class KoreaExchangeViewModel @Inject constructor(
             try {
                 // Repository 대신 UseCase를 호출합니다.
                 val prices = getKoreanCoinPricesUseCase()
+
+
                 Log.d("MultiExchangeViewModel", "Fetched ${prices.size} coins")
                 _koreanCoinPrices.value = prices
             } catch (e: Exception) {

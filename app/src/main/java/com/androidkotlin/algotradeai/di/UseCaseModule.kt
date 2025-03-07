@@ -20,12 +20,18 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object UseCaseModule {
 
+    // provide 함수
+    // 주로 구체적인 클래스의 인스턴스를 생성하여 제공할 때 사용합니다.
+    // 코드에서는 provideGetCoinMarketsUseCase 등의 함수가 UseCase 클래스의 새 인스턴스를 생성하여 반환합니다.
+
+    // 인터페이스와 구현체 관계에서는 주로 bind를, 구체 클래스를 직접 생성할 때는 주로 provide를 사용하는 패턴을 따르고 있습니다.
+
     @Provides
     @Singleton
     fun provideGetCoinMarketsUseCase(
-        coinRepository: GlobalCoinRepository
+        globalcoinRepository: GlobalCoinRepository
     ): GetGlobalCoinMarketsUseCase {
-        return GetGlobalCoinMarketsUseCase(coinRepository)
+        return GetGlobalCoinMarketsUseCase(globalcoinRepository)
     }
 
     @Provides
@@ -39,8 +45,8 @@ object UseCaseModule {
     @Provides
     @Singleton
     fun provideAnalyzeCoinTrendsUseCase(
-        coinRepository: GlobalCoinRepository
+        globalcoinRepository: GlobalCoinRepository
     ): AnalyzeCoinTrendsUseCase {
-        return AnalyzeCoinTrendsUseCase(coinRepository)
+        return AnalyzeCoinTrendsUseCase(globalcoinRepository)
     }
 }

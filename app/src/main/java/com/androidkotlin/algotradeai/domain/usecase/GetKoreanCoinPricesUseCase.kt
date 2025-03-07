@@ -17,6 +17,9 @@ class GetKoreanCoinPricesUseCase @Inject constructor(
      * @return 한국 거래소의 코인 가격 정보 리스트
      */
     suspend operator fun invoke(): List<Coin> {
+        // 단순히 Repository에 위임하는 형태지만,
+        // 필요에 따라 여기서 데이터를 필터링하거나 변환할 수 있습니다.
+
         return koreaExchangeRepository.getKoreanCoinPrices()
     }
 }

@@ -5,6 +5,7 @@ import com.androidkotlin.algotradeai.domain.model.CoinAnalysis
 import com.androidkotlin.algotradeai.domain.model.Signal
 import com.androidkotlin.algotradeai.domain.model.Trend
 import com.androidkotlin.algotradeai.domain.repository.GlobalCoinRepository
+import com.androidkotlin.algotradeai.domain.repository.KoreaExchangeRepository
 import javax.inject.Inject
 
 /**
@@ -22,6 +23,8 @@ class AnalyzeCoinTrendsUseCase @Inject constructor(
      * @param timeframe 분석 기간 (일 단위)
      * @return 분석 결과 리스트
      */
+
+
     suspend operator fun invoke(timeframe: Int = 7): List<CoinAnalysis> {
         val coins = coinRepository.getGlobalCoinMarkets()
 
