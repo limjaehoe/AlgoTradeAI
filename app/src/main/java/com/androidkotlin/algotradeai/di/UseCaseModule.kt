@@ -3,6 +3,8 @@ package com.androidkotlin.algotradeai.di
 import com.androidkotlin.algotradeai.domain.repository.GlobalCoinRepository
 import com.androidkotlin.algotradeai.domain.repository.KoreaExchangeRepository
 import com.androidkotlin.algotradeai.domain.usecase.AnalyzeCoinTrendsUseCase
+import com.androidkotlin.algotradeai.domain.usecase.GetCoinChartUseCase
+import com.androidkotlin.algotradeai.domain.usecase.GetCoinDetailUseCase
 import com.androidkotlin.algotradeai.domain.usecase.GetGlobalCoinMarketsUseCase
 import com.androidkotlin.algotradeai.domain.usecase.GetKoreanCoinPricesUseCase
 import dagger.Module
@@ -48,5 +50,23 @@ object UseCaseModule {
         globalcoinRepository: GlobalCoinRepository
     ): AnalyzeCoinTrendsUseCase {
         return AnalyzeCoinTrendsUseCase(globalcoinRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetCoinDetailUseCase(
+        globalCoinRepository: GlobalCoinRepository,
+        koreaExchangeRepository: KoreaExchangeRepository
+    ): GetCoinDetailUseCase {
+        return GetCoinDetailUseCase(globalCoinRepository, koreaExchangeRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetCoinChartUseCase(
+        globalCoinRepository: GlobalCoinRepository,
+        koreaExchangeRepository: KoreaExchangeRepository
+    ): GetCoinChartUseCase {
+        return GetCoinChartUseCase(globalCoinRepository, koreaExchangeRepository)
     }
 }
